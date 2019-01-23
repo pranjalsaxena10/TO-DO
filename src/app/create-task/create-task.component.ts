@@ -76,6 +76,7 @@ export class CreateTaskComponent implements OnInit {
     
     isValidTitle(title: String): Boolean {
         if(title !== undefined && title !== null) {
+            
             return true;
         }
         else

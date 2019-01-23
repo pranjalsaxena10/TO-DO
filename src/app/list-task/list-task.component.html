@@ -3,6 +3,7 @@
 <mat-grid-list cols="5" >
   <mat-grid-tile *ngFor="let task of tasks"  cdkDrag>
     <!-- <app-card (deletedTaskEvent)="deleteTask($event)" [task]="task"></app-card> -->
+    
     <app-card (selectedTaskEvent)="selectTask($event)" [task]="task"></app-card>
   </mat-grid-tile>
 </mat-grid-list>
