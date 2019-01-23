@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../Task';
-import { TaskCreateService } from '../task-create.service';
 import { TaskArrayService } from '../task-array.service';
 import { Router } from '@angular/router';
-import { FLAGS } from '@angular/core/src/render3/interfaces/view';
+
 @Component({
   selector: 'app-list-task',
   templateUrl: './list-task.component.html',
@@ -60,6 +59,7 @@ export class ListTaskComponent implements OnInit {
     tasks.splice(deleteIndex,1);
     // console.log(this.router.url);
   }
+
   onDeleteAll() {
       let selectedTasks = this.selectedTaskArray;
       for(let i = 0 ; i < selectedTasks.length ; i++) {
@@ -78,6 +78,15 @@ export class ListTaskComponent implements OnInit {
         this.deleteAllFlag=false;
       }
       console.log(this.tasks);
+  }
+
+  dropped(){
+    console.log("in dropped!");
+    this.onDeleteAll();
+  }
+
+  dragStart(){
+    console.log("in drag");
   }
   ngOnInit() {
       

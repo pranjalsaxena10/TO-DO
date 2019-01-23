@@ -4,6 +4,7 @@
 
   .highlight{
     background: skyblue;
+    border: 2px solid black;
   }
   
   .not-highlight{
