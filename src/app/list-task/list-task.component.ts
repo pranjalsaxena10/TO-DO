@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from '../Task';
 import { TaskArrayService } from '../task-array.service';
 import { Router } from '@angular/router';
+import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDragRelease} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-list-task',
@@ -83,6 +84,22 @@ export class ListTaskComponent implements OnInit {
   dropped(){
     console.log("in dropped!");
     this.onDeleteAll();
+  }
+  dragReleased(event: CdkDragRelease) {
+    console.log(event);
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    console.log(event);
+    // if (event.previousContainer === event.container) {
+    //   moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    // } else {
+    //   transferArrayItem(event.previousContainer.data,
+    //                     event.container.data,
+    //                     event.previousIndex,
+    //                     event.currentIndex);
+                        
+    // }
   }
 
   dragStart(){

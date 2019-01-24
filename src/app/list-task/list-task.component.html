@@ -1,9 +1,9 @@
 <div>
-  <button mat-raised-button color="primary" (click) = "onDeleteAll()" *ngIf = "deleteAllFlag" >Delete All</button>
+  <button mat-raised-button color="primary" (click)="onDeleteAll()" *ngIf="deleteAllFlag">Delete All</button>
 </div>
 <br>
 <mat-grid-list cols="5" >
-  <mat-grid-tile *ngFor="let task of tasks"  cdkDrag>
+  <mat-grid-tile *ngFor="let task of tasks" cdkDrag (cdkDragReleased) = "dragReleased($event)">
     <!-- <app-card (deletedTaskEvent)="deleteTask($event)" [task]="task"></app-card> -->
     <app-card (selectedTaskEvent)="selectTask($event)" [task]="task"></app-card>
   </mat-grid-tile>
