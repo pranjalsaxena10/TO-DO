@@ -16,6 +16,7 @@ export class ListTaskComponent implements OnInit {
   tasks=this.taskArray.showAllTasks();
   
   deleteAllFlag : Boolean=false;
+  dropFlag : Boolean = false;
   constructor(private taskArray: TaskArrayService, private router: Router) { }
   selectTask(task: Task){
   
@@ -81,9 +82,24 @@ export class ListTaskComponent implements OnInit {
       console.log(this.tasks);
   }
 
-  dropped(){
-    console.log("in dropped!");
-    this.onDeleteAll();
+  onDrop(event){
+    // console.log(event.data);
+    // console.log("in onDrop");
+    let task: Task = event.data;
+    let deleteIndex:number;
+    for(let i = 0;i< this.tasks.length;i++) {
+      if(this.tasks[i].title===task.title) {
+        deleteIndex = i;
+        break;
+      }
+    }
+    this.tasks.splice(deleteIndex,1);
+    this.dropFlag=false;
+    // console.log(this.tasks);
+  }
+
+  onDragEnd(){
+    this.dropFlag = false;
   }
   dragReleased(event: CdkDragRelease) {
     console.log(event);
@@ -102,9 +118,11 @@ export class ListTaskComponent implements OnInit {
     // }
   }
 
-  dragStart(){
-    console.log("in drag");
+  onDragStart(){
+    this.dropFlag = true;
+    this.deleteAllFlag = false;
   }
+  
   ngOnInit() {
       
   }

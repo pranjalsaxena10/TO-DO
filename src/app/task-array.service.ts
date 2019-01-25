@@ -10,12 +10,13 @@ export class TaskArrayService {
   
   
   constructor() {
-      for(let i=1; i<=10 ; i++) {
-          let t = new Task(i.toString() , "Desc" , new Date() , new Date());
-          this.tasks.push(t);
-      }
+
+    for(let i=1;i<=10;i++)
+    {
+      this.tasks.push(new Task(i.toString(),'Description',new Date(),new Date()));
+    }
     
-  }
+   }
   pushATask(task: Task) {
     this.tasks.push(task);
   }

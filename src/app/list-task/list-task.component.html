@@ -1,10 +1,14 @@
 <div>
-  <button mat-raised-button color="primary" (click)="onDeleteAll()" *ngIf="deleteAllFlag">Delete All</button>
+  <button mat-raised-button color="primary" (click) = "onDeleteAll()" *ngIf = "deleteAllFlag" cdkDrop >Delete All</button>
 </div>
+
+<span > 
+  <img dndDropzone *ngIf = "dropFlag"  (dndDrop)="onDrop($event)" style="width:90px;height:90px;filter: grayscale(90%);display: block;margin-left: auto;margin-right: auto;" src="../../assets/trashcan.jpg">
+</span>
+
 <br>
 <mat-grid-list cols="5" >
-  <mat-grid-tile *ngFor="let task of tasks" cdkDrag (cdkDragReleased) = "dragReleased($event)">
-    <!-- <app-card (deletedTaskEvent)="deleteTask($event)" [task]="task"></app-card> -->
-    <app-card (selectedTaskEvent)="selectTask($event)" [task]="task"></app-card>
+  <mat-grid-tile *ngFor="let task of tasks" [dndDraggable]="task" [dndDisableIf]="false" (dndStart)="onDragStart()" (dndEnd)="onDragEnd()" >
+    <app-card (selectedTaskEvent)="selectTask($event)" [task]="task" ></app-card>
   </mat-grid-tile>
 </mat-grid-list>
